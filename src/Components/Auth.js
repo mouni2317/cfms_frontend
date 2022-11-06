@@ -22,7 +22,7 @@ export default function Auth(props) {
     ]
     if(authMode === "signin"){
         return (
-            <div className='Auth-form-Container'>
+            <div className='Auth-form-Container' style={{alignContent:'center'}}>
                 <form className='Auth-form'>
                     <div className='Auth-form-content'>
                         <h3  className='Auth-form-title'>Sign In</h3>
@@ -65,7 +65,7 @@ export default function Auth(props) {
                     <div className='text-center'>
                        Already Registered{" "}
                         <span className='link-primary' onClick={changeAuthMode}>
-                            Sign Up
+                            Sign In
                         </span>
                     </div>
                     <div className='form-group mt-3'>
