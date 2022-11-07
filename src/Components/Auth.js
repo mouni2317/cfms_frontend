@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
 
 export default function Auth(props) {
@@ -11,6 +12,9 @@ export default function Auth(props) {
     const changeAuthMode=()=>{
         setAuthMode(authMode === "signin" ? "signup" :"signin")
     }
+
+    const navigate = useNavigate();
+    const navigateToDashboard = () => navigate('/productList');
 
     const bank=[
         {value:'WellsFargo',label:'WellsFargo'},
@@ -45,7 +49,7 @@ export default function Auth(props) {
                             placeholder='Enter password'/>
                         </div>
                         <div className='d-grid gap-2 mt-3'>
-                            <button type='submit' className='btn btn-primary'>
+                            <button type='submit' className='btn btn-primary' onClick={navigateToDashboard}>
                                 Signin
                             </button>
                         </div>
@@ -138,7 +142,7 @@ export default function Auth(props) {
                         placeholder='Enter ifsc code'/>
                     </div>
                     <div className='d-grid gap-2 mt-3'>
-                        <button type='submit' className='btn btn-primary'>
+                        <button type='submit' className='btn btn-primary' onClick={navigateToDashboard}>
                             Register
                         </button>
                     </div>

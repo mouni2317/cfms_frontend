@@ -19,6 +19,7 @@
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: white;
+  margin: auto;
 }
 
 .Auth-form-content {
@@ -38,4 +39,8 @@ label {
   font-size: 14px;
   font-weight: 600;
   color: rgb(34, 34, 34);
+}
+
+.content-container {
+  min-height: calc(100vh - 130px);
 }
