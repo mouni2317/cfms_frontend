@@ -6,7 +6,7 @@ import "./ProductList.css"
 export default function ProductList() {
 
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     requestProducts();

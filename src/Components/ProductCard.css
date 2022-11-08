@@ -1,7 +1,7 @@
 .card-container {
   display: flex;
   height: 500px;
-  width: 70%;
+  max-width: 1300px;
   margin: 50px;
   padding: 50px;
   box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc;

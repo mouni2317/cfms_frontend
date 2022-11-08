@@ -29,7 +29,7 @@ export default function NavBar() {
         </NavLink>
       </div>
       <div className="right-containers">
-        <div className="greeting-container">Hi, {sessionStorage.getItem('username')}</div>
+        <div className="greeting-container">Welcome, {sessionStorage.getItem('username')}</div>
         <div className="logout-button" onClick={logout}>Logout</div>
       </div>
     </div>
