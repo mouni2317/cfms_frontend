@@ -1,0 +1,19 @@
+.product-page{
+    text-align: center;
+}
+.product-wrapper{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.product-image{
+    width : 40%;
+    display: inline-block;
+}
+.product-details{
+    max-width : 60%;
+    display: inline-block;
+    text-align: left;
+}
+.drop{
+    margin:60px;
+}

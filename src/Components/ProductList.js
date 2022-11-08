@@ -12,6 +12,8 @@ export default function ProductList() {
     requestProducts();
   }, []);
 
+ 
+
   async function requestProducts() {
     setLoading(true);
     const res = await fetch(`http://pets-v2.dev-apis.com/pets`);
