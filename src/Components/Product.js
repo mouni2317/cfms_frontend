@@ -73,7 +73,11 @@ const Product = (props) => {
 </select>
     </div>
     <h2>EMI starting from 6000pm!</h2>
+    <div className="button-wrapper">
+    <div className="pay-button" >PAY NOW</div>
+    </div>
     <a href= "/"> Terms and Conditions</a>
+
 
 </div>
     

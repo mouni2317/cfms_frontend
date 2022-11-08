@@ -17,3 +17,19 @@
 .drop{
     margin:60px;
 }
+.pay-button{
+    /* display: flex; */
+  background-color: #5CBF60;
+  width: 20%; 
+  margin-left: 40%;
+  /* align-items: center; */
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 40px;
+  cursor: pointer;
+}
+.button-wrapper{
+    text-align: center;
+    margin-top: 50px;
+}
