@@ -6,12 +6,14 @@ import ProductList from "./Components/ProductList";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Dashboard from "./Components/Dashboard"
+import NavBar from "./Components/NavBar";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="content-container">
-      <Header />
+        <Header />
+        <NavBar />
         <Routes>
           <Route path="/" element={<Auth />} />
           <Route path="/productList" element={<ProductList />} />
