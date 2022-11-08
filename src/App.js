@@ -5,6 +5,7 @@ import Auth from "./Components/Auth";
 import ProductList from "./Components/ProductList";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import Dashboard from "./Components/Dashboard"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Auth />} />
           <Route path="/productList" element={<ProductList />} />
+          <Route path="/dashboard" element={<Dashboard/>}/>
         </Routes>
       </div>
       <Footer />
