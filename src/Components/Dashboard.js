@@ -1,14 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
 import Moment from "moment";
-import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
@@ -91,43 +83,6 @@ export class Dashboard extends Component {
 
     return (
       <div>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: "70%", flexGrow: 0 }}
-              >
-                <LocalMallIcon  />
-
-                <Link
-                  style={{ color: "white", textDecoration: "none" }}
-                  className="nav nav-link"
-                  to="/ProductList"
-                >
-                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Products{" "}
-                  </Typography>
-                </Link>
-              </IconButton>
-              <Typography sx={{ ml: 2, flexGrow: 1 }}>
-                Hi , {this.state.userName}
-              </Typography>
-              <Button variant="outlined" color="inherit">
-                <Link
-                  style={{ color: "white", textDecoration: "none" }}
-                  className="nav nav-link"
-                  to="/"
-                >
-                  LOGOUT
-                </Link>
-              </Button>
-            </Toolbar>
-          </AppBar>
-        </Box>
         <div >
           <div className="mycard">
             <Item key={1} elevation={12}>
