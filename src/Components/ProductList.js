@@ -12,15 +12,13 @@ export default function ProductList() {
     requestProducts();
   }, []);
 
- 
-
   async function requestProducts() {
     setLoading(true);
-    const res = await fetch(`http://pets-v2.dev-apis.com/pets`);
+    const res = await fetch(`http://localhost:8080/getAllProducts`);
     const json = await res.json();
 
     setLoading(false);
-    setProducts(json.pets);
+    setProducts(json.products);
   }
 
   return (
@@ -32,12 +30,12 @@ export default function ProductList() {
           products.map((product) => {
             return (
               <ProductCard
-                key={product.id}
-                name={product.name}
-                breed={product.breed}
+                key={product.productId}
+                productName={product.productName}
                 images={product.images}
-                location={`${product.city}, ${product.state}`}
-                id={product.id}
+                description={product.description}
+                id={product.productId}
+                cost = {product.cost}
               />
             );
           })
