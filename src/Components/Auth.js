@@ -83,7 +83,7 @@ export default function Auth(props) {
                             onChange={e => setPassword(e.target.value)}/>
                         </div>
                         <div className='d-grid gap-2 mt-3'>
-                            <button type='submit' className='btn btn-primary'>
+                            <button type='submit' className='btn btn-primary' disabled={!username || !password}>
                                 Signin
                             </button>
                         </div>
