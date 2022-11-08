@@ -2,24 +2,9 @@ import React, { useEffect, useState } from "react"
 
 import ProductCard from "./ProductCard"
 import "./Product.css"
+import axios from "axios";
 
 
-const singleProduct ={
-    "id": 1,
-    "name": "Luna",
-    "animal": "dog",
-    "city": "Seattle",
-    "state": "WA",
-    "description": "Luna is actually the most adorable dog in the world. Her hobbies include yelling at squirrels, aggressively napping on her owners' laps, and asking to be fed two hours before IT'S DAMN WELL TIME LUNA. Luna is beloved by her puppy parents and lazily resides currently in Seattle, Washington.",
-    "breed": "Havanese",
-    "images": [
-      "http://pets-images.dev-apis.com/pets/dog25.jpg",
-      "http://pets-images.dev-apis.com/pets/dog26.jpg",
-      "http://pets-images.dev-apis.com/pets/dog27.jpg",
-      "http://pets-images.dev-apis.com/pets/dog28.jpg",
-      "http://pets-images.dev-apis.com/pets/dog29.jpg"
-    ]
-  }
 
 
 const Product = (props) => {
@@ -33,16 +18,26 @@ const Product = (props) => {
         console.log(oneProduct);
     }
 
+    function loadData(){
+      const pathname = window.location.pathname;
+      let num = pathname.slice(9)
+      num = Number(num);
+      console.log(num);
+      axios.post('/http://localhost:8080/getProduct/', {
+        id: num,        
+      })
+      .then(function (response) {
+        console.log(response.data);
+        setProduct(response.data);
+        setImageUrl(response.data["images"][0])
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
    
     useEffect(() => {
-        const pathname = window.location.pathname;
-        let num = pathname.slice(9)
-        num = Number(num);
-        console.log(num);
-        setProduct(singleProduct);
-        if(singleProduct["images"][0]){
-            setImageUrl(singleProduct["images"][0]);
-        }
+       loadData();
       }, []);
 
   return (
@@ -76,7 +71,7 @@ const Product = (props) => {
     <div className="button-wrapper">
     <div className="pay-button" >PAY NOW</div>
     </div>
-    <a href= "/"> Terms and Conditions</a>
+    <a href= ""> Terms and Conditions</a>
 
 
 </div>
