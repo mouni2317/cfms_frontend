@@ -42,16 +42,16 @@ export class Dashboard extends Component {
       ],
       recentTransactions: [
         {
+          ProductName: "Boat Headset",
           transactionId: "1234A23",
-          transactionDate: Moment("08-11-2022").format("DD-MM-YY"),
+          PurchaseDate: Moment("08-11-2022").format("DD-MM-YY"),
           amountPaid: 3000,
-          product: "Boat Headset",
         },
         {
+          ProductName: "Nike Shoes",
           transactionId: "4563B12",
-          transactionDate: Moment("3-07-2022").format("DD-MM-YY"),
+          PurchaseDate: Moment("3-07-2022").format("DD-MM-YY"),
           amountPaid: 4000,
-          product: "Nike Shoes",
         },
       ],
     };
@@ -64,8 +64,7 @@ export class Dashboard extends Component {
     }));
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
       [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+        fontSize: 16,
       },
       [`&.${tableCellClasses.body}`]: {
         fontSize: 14,
@@ -84,55 +83,52 @@ export class Dashboard extends Component {
     return (
       <div>
         <div >
-          <div className="usercard">
-            <Item key={1} elevation={12}>
+          <div className="usercard" style={{float:"left",width:"40%",marginLeft:"30%"}}>
+            <Item key={1} elevation={10}>
               <Grid container >
-                <Grid item xs={12}>
-                  <b className="lfi">LFI</b>
+                <Grid item xs={10}>
+                  <b className="lfi" style={{float:"right"}}>LFI</b>
                 </Grid>
               </Grid>
 
               <Grid container>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <p className="attribute">Card Number :</p>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={8}>
                   <p className="value">
                     {this.state.CardDetails.CardNumber}
-                   
                   </p>
                 </Grid>
               </Grid>
               <br />
               <Grid container>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <p className="attribute">Name :</p>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={8}>
                   <p className="value">
                     {this.state.CardDetails.HolderName}
-                 
                   </p>
                 </Grid>
               </Grid>
               <br />
               <Grid container>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <p className="attribute">Valid till :</p>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={8}>
                   <p className="value">
                     {this.state.CardDetails.Validity}
-               
                   </p>
                 </Grid>
               </Grid>
               <br />
               <Grid container>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                   <p className="attribute">Card Type :</p>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={8}>
                   <p className="value">
                     {this.state.CardDetails.CardType}
                   
@@ -159,7 +155,7 @@ export class Dashboard extends Component {
               <Grid item xs={12} sm={12} md={4}>
                 <Grid container>
                   <Grid item xs={4}>
-                    <p className="attribute">TOTAL CREDIT :</p>
+                    <p className="attribute">Total Credit :</p>
                   </Grid>
                   <Grid item xs={8}>
                     <p className="value">
@@ -175,7 +171,7 @@ export class Dashboard extends Component {
               <Grid item xs={12} sm={12} md={4}>
                 <Grid container>
                   <Grid item xs={4}>
-                    <p className="attribute">CREDIT USED :</p>
+                    <p className="attribute">Credit Used :</p>
                   </Grid>
                   <Grid item xs={8}>
                     <p className="value">
@@ -191,7 +187,7 @@ export class Dashboard extends Component {
               <Grid item xs={12} sm={12} md={4}>
                 <Grid container>
                   <Grid item xs={4}>
-                    <p className="attribute">REMAINING CREDIT :</p>
+                    <p className="attribute">Remaining Credit :</p>
                   </Grid>
                   <Grid item xs={8}>
                     <p className="value">
@@ -202,15 +198,16 @@ export class Dashboard extends Component {
               </Grid>
             </Grid>
           </div>
+          <br />
           <div className="products-title">
-            <b>PRODUCTS PURCHASED</b>
+            <h6>PRODUCTS PURCHASED</h6>
           </div>
           <br />
 
           <div className="products-purchased">
             {this.state.productsPurchased.map((x) => {
               return (
-                <Grid className="product" container border={2}>
+                <Grid className="product" container border={1}>
                   <Grid item xs={12}>
                     <Item
                       key={this.state.productsPurchased.indexOf(x)}
@@ -221,7 +218,7 @@ export class Dashboard extends Component {
                           <Grid container>
                             <Grid item xs={4}>
                               <p className="attribute">
-                                PRODUCT NAME :
+                                Product Name :
                               </p>
                             </Grid>
                             <Grid item xs={4}>
@@ -235,7 +232,7 @@ export class Dashboard extends Component {
                           <Grid container>
                             <Grid item xs={4}>
                               <p className="attribute">
-                                AMOUNT PAID :
+                                Amount Paid :
                               </p>
                             </Grid>
                             <Grid item xs={4}>
@@ -260,27 +257,28 @@ export class Dashboard extends Component {
           <div className="product-names">
             <b>RECENT TRANSACTIONS</b>
           </div>
+          <br />
           <div className="transactions">
             <TableContainer component={Paper}>
-              <Table aria-label="customized table" border={2} >
+              <Table aria-label="customized table" border={1} >
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell>PRODUCT</StyledTableCell>
-                    <StyledTableCell align="right">DATE</StyledTableCell>
-                    <StyledTableCell align="right">AMOUNT PAID</StyledTableCell>
+                    <StyledTableCell><b>Product Name</b></StyledTableCell>
+                    <StyledTableCell align="right"><b>Date</b></StyledTableCell>
+                    <StyledTableCell align="right"><b>Amount Paid</b></StyledTableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody border={2}>
+                <TableBody border={1}>
                   {this.state.recentTransactions.map((row) => (
                     <StyledTableRow key={row.transactionId}>
                       <StyledTableCell component="th" scope="row">
-                        {row.product}
+                        {row.ProductName}
                       </StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.transactionDate}
+                        {row.PurchaseDate}
                       </StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.amountPaid}
+                        INR {row.amountPaid}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

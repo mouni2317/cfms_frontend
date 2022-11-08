@@ -147,8 +147,8 @@ export default function Auth(props) {
                         </button>
                     </div>
                     <div className='d-grid gap-2 mt-3'>
-                        <button type='submit' className='btn btn-primary'>
-                            reset
+                        <button type='reset' className='btn btn-primary' >
+                            Reset
                         </button>
                     </div>
                 </div>
