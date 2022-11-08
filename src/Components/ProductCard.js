@@ -6,7 +6,7 @@ export default function ProductCard(props) {
   const { name, breed, images, location, id } = props;
 
   const navigate = useNavigate();
-  const navigateToDetails = () => navigate('/login');
+  const navigateToDetails = () => navigate(`/product/${id}`);
 
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
   if (images.length) {
