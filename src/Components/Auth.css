@@ -1,0 +1,9 @@
+.options {
+  display: flex;
+  gap: 90px;
+}
+
+.select-bar {
+  display: flex;
+  justify-content: space-between;
+}

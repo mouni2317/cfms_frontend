@@ -14,7 +14,7 @@ export default function ProductList() {
 
   async function requestProducts() {
     setLoading(true);
-    const res = await fetch(`http://localhost:8080/getAllProducts`);
+    const res = await fetch(`http://localhost:8080/cfms/getAllProducts`);
     const json = await res.json();
 
     setLoading(false);
