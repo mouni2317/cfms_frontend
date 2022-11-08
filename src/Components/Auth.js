@@ -14,7 +14,7 @@ export default function Auth(props) {
     }
 
     const navigate = useNavigate();
-    const navigateToDashboard = () => navigate('/productList');
+    const navigateToDashboard = () => navigate('/dashboard');
 
     const bank=[
         {value:'WellsFargo',label:'WellsFargo'},

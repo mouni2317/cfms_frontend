@@ -247,7 +247,7 @@ export class Dashboard extends Component {
           <div className="products-purchased">
             {this.state.productsPurchased.map((x) => {
               return (
-                <Grid className="product" container>
+                <Grid className="product" container border={3}>
                   <Grid item xs={12}>
                     <Item
                       key={this.state.productsPurchased.indexOf(x)}
@@ -300,7 +300,7 @@ export class Dashboard extends Component {
           </div>
           <div className="transactions">
             <TableContainer component={Paper}>
-              <Table aria-label="customized table">
+              <Table aria-label="customized table" border={2}>
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>PRODUCT</StyledTableCell>
@@ -308,7 +308,7 @@ export class Dashboard extends Component {
                     <StyledTableCell align="right">AMOUNT PAID</StyledTableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody border={2}>
                   {this.state.recentTransactions.map((row) => (
                     <StyledTableRow key={row.transactionId}>
                       <StyledTableCell component="th" scope="row">
