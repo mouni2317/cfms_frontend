@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import Select from 'react-select'
+
+async function loginUser(cred) {
+    return fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cred)
+    })
+    .then(data => data.json())
+}
 
 export default function Auth(props) {
     const options=[
@@ -16,6 +27,25 @@ export default function Auth(props) {
     const navigate = useNavigate();
     const navigateToDashboard = () => navigate('/dashboard');
 
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = async e => {
+    e.preventDefault();
+    const response = await loginUser({
+        username,
+        password
+    });
+    if ('fname' in response) {
+        sessionStorage.setItem('username', response['fname']);
+        navigateToDashboard();
+    } else {
+        alert('Incorrect username or password');
+        setUserName('');
+        setPassword('');
+    }
+    }
+
     const bank=[
         {value:'WellsFargo',label:'WellsFargo'},
         {value:'HDFC',label:'HDFC'},
@@ -27,7 +57,7 @@ export default function Auth(props) {
     if(authMode === "signin"){
         return (
             <div className='Auth-form-Container' style={{alignContent:'center'}}>
-                <form className='Auth-form'>
+                <form className='Auth-form' onSubmit={handleSubmit}>
                     <div className='Auth-form-content'>
                         <h3  className='Auth-form-title'>Sign In</h3>
                         <div className='text-center'>
@@ -40,16 +70,20 @@ export default function Auth(props) {
                             <label>User Name</label>
                             <input type="text"
                             className="form-control mt-1"
-                            placeholder='Enter username'/>
+                            placeholder='Enter username'
+                            value={username}
+                            onChange={e => setUserName(e.target.value)}/>
                         </div>
                         <div className='form-group mt-3'>
                             <label>Password</label>
                             <input type="password"
                             className="form-control mt-1"
-                            placeholder='Enter password'/>
+                            placeholder='Enter password'
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}/>
                         </div>
                         <div className='d-grid gap-2 mt-3'>
-                            <button type='submit' className='btn btn-primary' onClick={navigateToDashboard}>
+                            <button type='submit' className='btn btn-primary'>
                                 Signin
                             </button>
                         </div>
@@ -147,7 +181,7 @@ export default function Auth(props) {
                         </button>
                     </div>
                     <div className='d-grid gap-2 mt-3'>
-                        <button type='reset' className='btn btn-primary' >
+                        <button type='reset' className='btn btn-primary'>
                             Reset
                         </button>
                     </div>

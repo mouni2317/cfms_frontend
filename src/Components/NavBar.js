@@ -5,7 +5,7 @@ import "./NavBar.css"
 
 export default function NavBar() {
 
-  sessionStorage.setItem("username","sekhar");
+  // sessionStorage.setItem("username","sekhar");
   const navigate = useNavigate();
   const navigateToLogin = () => navigate('/');
 
