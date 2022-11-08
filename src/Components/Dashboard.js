@@ -23,43 +23,43 @@ export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "Ram@123",
-      cardDetails: {
-        cardNumber: "45678912901",
-        cardHolder: "Ram Kumar",
-        validity: Moment().format("MM/YY"),
-        cardType: "Gold",
-        status: "Activated",
-        totalCredit: 40000,
-        creditUsed: 10000,
-        balance: 30000,
+      userName: "Sekhar@1",
+      CardDetails: {
+        CardNumber: "123456789",
+        HolderName: "Chandra Sekhar",
+        Validity: Moment().format("MM/YY"),
+        CardType: "Gold",
+        Status: "Activated",
+        TotalCredit: 10000,
+        CreditUsed: 7000,
+        RemainingCredit: 3000,
       },
       productsPurchased: [
         { productId:1,
-          productName: "Puma Jacket",
+          productName: "Boat Headset",
           productCost: 3000,
-          productType: "clothing",
-          datePurchased: Moment("02-11-2022").format("DD-MM-YY"),
+          productType: "Electronics",
+          datePurchased: Moment("08-11-2022").format("DD-MM-YY"),
         },
-        {productId:3,
-          productName: "Redmi Note 5",
-          productCost: 7000,
-          productType: "electronics",
-          datePurchased: Moment("09-18-2022").format("DD-MM-YY"),
+        {productId:2,
+          productName: "Nike Shoes",
+          productCost: 4000,
+          productType: "Shoes",
+          datePurchased: Moment("3-07-2022").format("DD-MM-YY"),
         },
       ],
       recentTransactions: [
         {
-          transactionId: "2201ABC",
-          transactionDate: Moment("02-11-2022").format("DD-MM-YY"),
+          transactionId: "1234A23",
+          transactionDate: Moment("08-11-2022").format("DD-MM-YY"),
           amountPaid: 3000,
-          product: "Puma Jacket",
+          product: "Boat Headset",
         },
         {
-          transactionId: "2301XYZ",
-          transactionDate: Moment("09-18-2022").format("DD-MM-YY"),
-          amountPaid: 7000,
-          product: "Redmi Note 5",
+          transactionId: "4563B12",
+          transactionDate: Moment("3-07-2022").format("DD-MM-YY"),
+          amountPaid: 4000,
+          product: "Nike Shoes",
         },
       ],
     };
@@ -92,7 +92,7 @@ export class Dashboard extends Component {
     return (
       <div>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+          <AppBar position="static" style={{backgroundColor:"green"}}>
             <Toolbar>
               <IconButton
                 size="large"
@@ -101,24 +101,23 @@ export class Dashboard extends Component {
                 aria-label="menu"
                 sx={{ mr: "70%", flexGrow: 0 }}
               >
-                <LocalMallIcon  />
 
-                <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                <Link variant="outlined"
+                  style={{ color: "white" }}
                   className="nav nav-link"
                   to="/ProductList"
                 >
-                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Products{" "}
+                  <Typography border={2} padding={1} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    Check Out Products{" "}
                   </Typography>
                 </Link>
               </IconButton>
-              <Typography sx={{ ml: 2, flexGrow: 1 }}>
-                Hi , {this.state.userName}
+              <Typography sx={{ ml: 3, flexGrow: 4 }}>
+                Welcome , {this.state.userName}
               </Typography>
               <Button variant="outlined" color="inherit">
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{ color: "white"}}
                   className="nav nav-link"
                   to="/"
                 >
@@ -129,11 +128,11 @@ export class Dashboard extends Component {
           </AppBar>
         </Box>
         <div >
-          <div className="mycard">
+          <div className="usercard">
             <Item key={1} elevation={12}>
-              <Grid container>
+              <Grid container >
                 <Grid item xs={12}>
-                  <p className="Lfi">LFI</p>
+                  <b className="lfi">LFI</b>
                 </Grid>
               </Grid>
 
@@ -143,7 +142,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={7}>
                   <p className="value">
-                    {this.state.cardDetails.cardNumber}
+                    {this.state.CardDetails.CardNumber}
                    
                   </p>
                 </Grid>
@@ -155,7 +154,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={7}>
                   <p className="value">
-                    {this.state.cardDetails.cardHolder}
+                    {this.state.CardDetails.HolderName}
                  
                   </p>
                 </Grid>
@@ -167,7 +166,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={7}>
                   <p className="value">
-                    {this.state.cardDetails.validity}
+                    {this.state.CardDetails.Validity}
                
                   </p>
                 </Grid>
@@ -179,7 +178,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={7}>
                   <p className="value">
-                    {this.state.cardDetails.cardType}
+                    {this.state.CardDetails.CardType}
                   
                   </p>
                 </Grid>
@@ -187,52 +186,60 @@ export class Dashboard extends Component {
               <br />
               <Grid container>
                 <Grid
-                  style={{ background: "green", textAlign: "center" }}
+                  style={{ backgroundColor: "green", textAlign: "center", color: "white" }}
                   item
                   xs={12}
                 >
-                  <p className="card-status">
-                    {this.state.cardDetails.status.toUpperCase()}
-                  </p>
+                  <b className="card-status">
+                    {this.state.CardDetails.Status}
+                  </b>
                 </Grid>
               </Grid>
             </Item>
           </div>
           <br />
           <div>
-            <Grid container className="acc-info">
+            <Grid container className="account">
               <Grid item xs={12} sm={12} md={4}>
                 <Grid container>
                   <Grid item xs={4}>
-                    <p className="attribute-info">TOTAL CREDIT :</p>
+                    <p className="attribute">TOTAL CREDIT :</p>
                   </Grid>
                   <Grid item xs={8}>
-                    <p className="credit">
-                      INR {this.state.cardDetails.totalCredit}
+                    <p className="value">
+                      INR {this.state.CardDetails.TotalCredit}
                     </p>
                   </Grid>
                 </Grid>
               </Grid>
+              </Grid>
+              </div>
+              <div>
+            <Grid container className="account">
               <Grid item xs={12} sm={12} md={4}>
                 <Grid container>
                   <Grid item xs={4}>
-                    <p className="attribute-info">CREDIT USED :</p>
+                    <p className="attribute">CREDIT USED :</p>
                   </Grid>
                   <Grid item xs={8}>
-                    <p className="credit-used">
-                      INR {this.state.cardDetails.creditUsed}
+                    <p className="value">
+                      INR {this.state.CardDetails.CreditUsed}
                     </p>
                   </Grid>
                 </Grid>
               </Grid>
+              </Grid>
+              </div>
+              <div>
+            <Grid container className="account">
               <Grid item xs={12} sm={12} md={4}>
                 <Grid container>
                   <Grid item xs={4}>
-                    <p className="attribute-info">BALANCE :</p>
+                    <p className="attribute">REMAINING CREDIT :</p>
                   </Grid>
                   <Grid item xs={8}>
-                    <p className="balance">
-                      INR {this.state.cardDetails.balance}
+                    <p className="value">
+                      INR {this.state.CardDetails.RemainingCredit}
                     </p>
                   </Grid>
                 </Grid>
@@ -240,14 +247,14 @@ export class Dashboard extends Component {
             </Grid>
           </div>
           <div className="products-title">
-            <p>PRODUCTS PURCHASED</p>
+            <b>PRODUCTS PURCHASED</b>
           </div>
           <br />
 
           <div className="products-purchased">
             {this.state.productsPurchased.map((x) => {
               return (
-                <Grid className="product" container border={3}>
+                <Grid className="product" container border={2}>
                   <Grid item xs={12}>
                     <Item
                       key={this.state.productsPurchased.indexOf(x)}
@@ -257,12 +264,12 @@ export class Dashboard extends Component {
                         <Grid item xs={6}>
                           <Grid container>
                             <Grid item xs={4}>
-                              <p className="attribute-transactions">
+                              <p className="attribute">
                                 PRODUCT NAME :
                               </p>
                             </Grid>
                             <Grid item xs={4}>
-                              <p className="value-transactions">
+                              <p className="value">
                                 {x.productName}
                               </p>
                             </Grid>
@@ -271,14 +278,13 @@ export class Dashboard extends Component {
                         <Grid item xs={6}>
                           <Grid container>
                             <Grid item xs={4}>
-                              <p className="attribute-transactions">
+                              <p className="attribute">
                                 AMOUNT PAID :
                               </p>
                             </Grid>
                             <Grid item xs={4}>
                               <p
-                                style={{ color: "lightcoral" }}
-                                className="value-transactions"
+                                className="value"
                               >
                                 INR {x.productCost}
                               </p>
@@ -295,12 +301,12 @@ export class Dashboard extends Component {
             <br />
           </div>
 
-          <div className="products-title">
-            <p>RECENT TRANSACTIONS</p>
+          <div className="product-names">
+            <b>RECENT TRANSACTIONS</b>
           </div>
           <div className="transactions">
             <TableContainer component={Paper}>
-              <Table aria-label="customized table" border={2}>
+              <Table aria-label="customized table" border={2} >
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>PRODUCT</StyledTableCell>
