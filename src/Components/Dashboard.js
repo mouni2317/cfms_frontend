@@ -38,7 +38,8 @@ export class Dashboard extends Component {
           userId: 0,
           data: ""
         },
-      ]
+      ],
+      defaultCardNumber: 6541987998742136
     };
   }
 
@@ -101,7 +102,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={8}>
                   <p className="value">
-                    {this.state.CardDetails.cardNumber}
+                    {this.state.CardDetails.cardNumber ? this.state.CardDetails.cardNumber : this.state.defaultCardNumber}
                   </p>
                 </Grid>
               </Grid>
