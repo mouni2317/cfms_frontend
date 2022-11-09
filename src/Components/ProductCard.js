@@ -9,8 +9,8 @@ export default function ProductCard(props) {
   const navigateToDetails = () => navigate(`/product/${id}`);
 
   let image = "https://www.shutterstock.com/image-vector/no-image-available-sign-absence-600w-373243873.jpg";
-  if (images.length) {
-    image = images[0];
+  if (images) {
+    image = images;
   }
 
   return (

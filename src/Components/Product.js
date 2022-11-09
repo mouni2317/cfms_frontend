@@ -1,33 +1,20 @@
 import React, { useEffect, useState } from "react"
-
-import ProductCard from "./ProductCard"
 import "./Product.css"
 import axios from "axios";
 
 
-
-
 const Product = (props) => {
 
-    const [oneProduct,setProduct] = useState({})
-
-    
-
-    function print(){
-        console.log(oneProduct);
-    }
+    const [oneProduct,setProduct] = useState({});
 
     function loadData(){
       const pathname = window.location.pathname;
       let num = pathname.slice(9)
       num = Number(num);
-      console.log(num);
-      axios.post('/http://localhost:8080/getProduct/', {
+      axios.post('http://localhost:8080/cfms/api/getProduct/', {
         id: num,        
       })
       .then(function (response) {
-        console.log(response.data);
-        console.log(response.data["image"]);
         setProduct(response.data);
       })
       .catch(function (error) {
@@ -42,7 +29,7 @@ const Product = (props) => {
   return (
     <div className="product-page">
         
-      {oneProduct!= {} ? 
+      {oneProduct !== {} ? 
       <div className=".product-wrapper">
       <div className="product-image">
         <img src={oneProduct["image"]} alt={oneProduct["productName"]}  className="image"/>

@@ -14,7 +14,7 @@ export default function ProductList() {
 
   async function requestProducts() {
     setLoading(true);
-    const res = await fetch(`http://localhost:8080/cfms/getAllProducts`);
+    const res = await fetch(`http://localhost:8080/cfms/api/getAllProducts`);
     const json = await res.json();
 
     setLoading(false);
@@ -32,7 +32,7 @@ export default function ProductList() {
               <ProductCard
                 key={product.productId}
                 productName={product.productName}
-                images={product.images}
+                images={product.image}
                 description={product.description}
                 id={product.productId}
                 cost = {product.cost}
