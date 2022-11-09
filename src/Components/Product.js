@@ -10,7 +10,6 @@ import axios from "axios";
 const Product = (props) => {
 
     const [oneProduct,setProduct] = useState({})
-    const [imageUrl,setImageUrl] = useState("")
 
     
 
@@ -28,8 +27,8 @@ const Product = (props) => {
       })
       .then(function (response) {
         console.log(response.data);
+        console.log(response.data["image"]);
         setProduct(response.data);
-        setImageUrl(response.data["images"][0])
       })
       .catch(function (error) {
         console.log(error);
@@ -46,13 +45,13 @@ const Product = (props) => {
       {oneProduct!= {} ? 
       <div className=".product-wrapper">
       <div className="product-image">
-        <img src={imageUrl} alt={oneProduct["name"]}  className="image"/>
+        <img src={oneProduct["image"]} alt={oneProduct["productName"]}  className="image"/>
       </div>
       <div className="product-details">
         {/* <div className="info"> */}
-          <h1>PRODUCT NAME: {oneProduct["name"]}</h1>
-          <h2>PRODUCT DETAILS: {` from ${oneProduct["city"]}`}</h2>
-          <h2>COST: {oneProduct["id"]}</h2>
+          <h1>PRODUCT NAME: {oneProduct["productName"]}</h1>
+          <h2>PRODUCT DETAILS: {` from ${oneProduct["description"]}`}</h2>
+          <h2>COST: {oneProduct["cost"]}</h2>
         {/* </div> */}
       </div> 
       
@@ -67,7 +66,7 @@ const Product = (props) => {
   <option value="12">12 months</option>
 </select>
     </div>
-    <h2>EMI starting from 6000pm!</h2>
+    <h2>EMI starting from {Math.ceil(oneProduct["cost"]/12)}rs pm!</h2>
     <div className="button-wrapper">
     <div className="pay-button" >PAY NOW</div>
     </div>
