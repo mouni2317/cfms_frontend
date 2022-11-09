@@ -45,7 +45,7 @@ export class Dashboard extends Component {
 
   componentDidMount() {
     Promise.all([
-      axios.post(apiUrl + '/getCardDetails',{
+      axios.post(apiUrl + '/getCardDetails', {
         userId: parseInt(sessionStorage.getItem('userId'))
       }),
       axios.post(apiUrl + '/getAllTransactions', {
@@ -223,8 +223,7 @@ export class Dashboard extends Component {
                   {this.state.recentTransactions.map((row) => (
                     <StyledTableRow key={row.transactionId}>
                       <StyledTableCell component="th" scope="row">
-                        {/* {row.productName} */}
-                        Iphone 14
+                        {row.productName}
                       </StyledTableCell>
                       <StyledTableCell align="right">
                         {row.date}
