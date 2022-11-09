@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Component } from "react";
-import Moment from "moment";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
@@ -10,51 +9,56 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import axios from "axios";
+import { apiUrl } from "./constants";
 
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "Sekhar@1",
       CardDetails: {
-        CardNumber: "123456789",
-        HolderName: "Chandra Sekhar",
-        Validity: Moment().format("MM/YY"),
-        CardType: "Gold",
-        Status: "Activated",
-        TotalCredit: 10000,
-        CreditUsed: 7000,
-        RemainingCredit: 3000,
+        cardNumber: 0,
+        validity: "",
+        cardType: "",
+        status: "",
+        totalCredit: 0,
+        reditUsed: 0,
+        remainingCredit: 0
       },
-      productsPurchased: [
-        { productId:1,
-          productName: "Boat Headset",
-          productCost: 3000,
-          productType: "Electronics",
-          datePurchased: Moment("08-11-2022").format("DD-MM-YY"),
-        },
-        {productId:2,
-          productName: "Nike Shoes",
-          productCost: 4000,
-          productType: "Shoes",
-          datePurchased: Moment("3-07-2022").format("DD-MM-YY"),
-        },
-      ],
       recentTransactions: [
         {
-          ProductName: "Boat Headset",
-          transactionId: "1234A23",
-          PurchaseDate: Moment("08-11-2022").format("DD-MM-YY"),
-          amountPaid: 3000,
+          productName: "",
+          transactionId: 0,
+          purchaseDate: "",
+          amountPaid: 0,
+          productId: 0,
+          usercardId: 0,
+          outstanding: false,
+          completed: true,
+          userId: 0,
+          data: ""
         },
-        {
-          ProductName: "Nike Shoes",
-          transactionId: "4563B12",
-          PurchaseDate: Moment("3-07-2022").format("DD-MM-YY"),
-          amountPaid: 4000,
-        },
-      ],
+      ]
     };
+  }
+
+  componentDidMount() {
+    Promise.all([
+      axios.post(apiUrl + '/getCardDetails', {
+        userId: parseInt(sessionStorage.getItem('userId'))
+      }),
+      axios.post(apiUrl + '/getAllTransactions', {
+        userId: parseInt(sessionStorage.getItem('userId'))
+      })
+    ])
+    .then(([res1, res2]) => {
+      const cardDetails = res1.data;
+      const transactionDetails = res2.data.transactionDetails;
+      this.setState({CardDetails: cardDetails, recentTransactions: transactionDetails});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
@@ -97,7 +101,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={8}>
                   <p className="value">
-                    {this.state.CardDetails.CardNumber}
+                    {this.state.CardDetails.cardNumber}
                   </p>
                 </Grid>
               </Grid>
@@ -108,7 +112,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={8}>
                   <p className="value">
-                    {this.state.CardDetails.HolderName}
+                    {sessionStorage.getItem('firstName') + ' ' + sessionStorage.getItem('lastName')}
                   </p>
                 </Grid>
               </Grid>
@@ -119,7 +123,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={8}>
                   <p className="value">
-                    {this.state.CardDetails.Validity}
+                    {this.state.CardDetails.validity}
                   </p>
                 </Grid>
               </Grid>
@@ -130,7 +134,7 @@ export class Dashboard extends Component {
                 </Grid>
                 <Grid item xs={8}>
                   <p className="value">
-                    {this.state.CardDetails.CardType}
+                    {this.state.CardDetails.cardType}
                   
                   </p>
                 </Grid>
@@ -143,7 +147,7 @@ export class Dashboard extends Component {
                   xs={12}
                 >
                   <b className="card-status">
-                    {this.state.CardDetails.Status}
+                    {this.state.CardDetails.status}
                   </b>
                 </Grid>
               </Grid>
@@ -159,7 +163,7 @@ export class Dashboard extends Component {
                   </Grid>
                   <Grid item xs={8}>
                     <p className="value">
-                      INR {this.state.CardDetails.TotalCredit}
+                      INR {this.state.CardDetails.totalCredit}
                     </p>
                   </Grid>
                 </Grid>
@@ -175,7 +179,7 @@ export class Dashboard extends Component {
                   </Grid>
                   <Grid item xs={8}>
                     <p className="value">
-                      INR {this.state.CardDetails.CreditUsed}
+                      INR {this.state.CardDetails.creditUsed}
                     </p>
                   </Grid>
                 </Grid>
@@ -191,7 +195,7 @@ export class Dashboard extends Component {
                   </Grid>
                   <Grid item xs={8}>
                     <p className="value">
-                      INR {this.state.CardDetails.RemainingCredit}
+                      INR {this.state.CardDetails.remainingCredit}
                     </p>
                   </Grid>
                 </Grid>
@@ -199,7 +203,7 @@ export class Dashboard extends Component {
             </Grid>
           </div>
           <br />
-          <div className="products-title">
+          {/* <div className="products-title">
             <h6>PRODUCTS PURCHASED</h6>
           </div>
           <br />
@@ -252,7 +256,7 @@ export class Dashboard extends Component {
             })}
 
             <br />
-          </div>
+          </div> */}
 
           <div className="product-names">
             <b>RECENT TRANSACTIONS</b>
@@ -272,10 +276,10 @@ export class Dashboard extends Component {
                   {this.state.recentTransactions.map((row) => (
                     <StyledTableRow key={row.transactionId}>
                       <StyledTableCell component="th" scope="row">
-                        {row.ProductName}
+                        {row.productName}
                       </StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.PurchaseDate}
+                        {row.purchaseDate}
                       </StyledTableCell>
                       <StyledTableCell align="right">
                         INR {row.amountPaid}

@@ -4,7 +4,7 @@ import "./Auth.css"
 import { apiUrl } from './constants'
 
 async function loginUser(cred) {
-    return fetch(apiUrl + '/loginUser', {
+    return fetch(apiUrl + '/login', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -44,7 +44,9 @@ export default function Auth(props) {
             password
         });
         if ('firstName' in response) {
-            sessionStorage.setItem('username', response['firstName']);
+            sessionStorage.setItem('firstName', response['firstName']);
+            sessionStorage.setItem('lastName', response['lastName']);
+            sessionStorage.setItem('userId', response['userId']);
             navigateToDashboard();
         } else {
             alert('Incorrect username or password');

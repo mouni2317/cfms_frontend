@@ -19,7 +19,7 @@ export default function ProductList() {
     const json = await res.json();
 
     setLoading(false);
-    setProducts(json.products);
+    setProducts(json);
   }
 
   return (
@@ -31,11 +31,11 @@ export default function ProductList() {
           products.map((product) => {
             return (
               <ProductCard
-                key={product.productId}
+                key={product.id}
                 productName={product.productName}
                 images={product.image}
                 description={product.description}
-                id={product.productId}
+                id={product.id}
                 cost = {product.cost}
               />
             );
