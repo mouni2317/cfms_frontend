@@ -42,8 +42,8 @@ export default function Auth(props) {
             username,
             password
         });
-        if ('fname' in response) {
-            sessionStorage.setItem('username', response['fname']);
+        if ('firstName' in response) {
+            sessionStorage.setItem('username', response['firstName']);
             navigateToDashboard();
         } else {
             alert('Incorrect username or password');
