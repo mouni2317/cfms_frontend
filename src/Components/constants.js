@@ -1,1 +1,1 @@
-export const apiUrl = 'http://localhost:8080/cfms/api'
+export const apiUrl = 'http://localhost:8082/cfms/api'

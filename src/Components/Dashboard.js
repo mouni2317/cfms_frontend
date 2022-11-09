@@ -45,7 +45,7 @@ export class Dashboard extends Component {
 
   componentDidMount() {
     Promise.all([
-      axios.post(apiUrl + '/getCardDetails', {
+      axios.post(apiUrl + '/getCardDetails',{
         userId: parseInt(sessionStorage.getItem('userId'))
       }),
       axios.post(apiUrl + '/getAllTransactions', {
@@ -54,7 +54,7 @@ export class Dashboard extends Component {
     ])
     .then(([res1, res2]) => {
       const cardDetails = res1.data;
-      const transactionDetails = res2.data.transactionDetails;
+      const transactionDetails = res2.data;
       this.setState({CardDetails: cardDetails, recentTransactions: transactionDetails});
     })
     .catch(function (error) {
@@ -223,10 +223,11 @@ export class Dashboard extends Component {
                   {this.state.recentTransactions.map((row) => (
                     <StyledTableRow key={row.transactionId}>
                       <StyledTableCell component="th" scope="row">
-                        {row.productName}
+                        {/* {row.productName} */}
+                        Iphone 14
                       </StyledTableCell>
                       <StyledTableCell align="right">
-                        {row.purchaseDate}
+                        {row.date}
                       </StyledTableCell>
                       <StyledTableCell align="right">
                         INR {row.amountPaid}
