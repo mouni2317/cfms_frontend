@@ -203,60 +203,6 @@ export class Dashboard extends Component {
             </Grid>
           </div>
           <br />
-          {/* <div className="products-title">
-            <h6>PRODUCTS PURCHASED</h6>
-          </div>
-          <br />
-
-          <div className="products-purchased">
-            {this.state.productsPurchased.map((x) => {
-              return (
-                <Grid className="product" container border={1}>
-                  <Grid item xs={12}>
-                    <Item
-                      key={this.state.productsPurchased.indexOf(x)}
-                      elevation={12}
-                    >
-                      <Grid container>
-                        <Grid item xs={6}>
-                          <Grid container>
-                            <Grid item xs={4}>
-                              <p className="attribute">
-                                Product Name :
-                              </p>
-                            </Grid>
-                            <Grid item xs={4}>
-                              <p className="value">
-                                {x.productName}
-                              </p>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={6}>
-                          <Grid container>
-                            <Grid item xs={4}>
-                              <p className="attribute">
-                                Amount Paid :
-                              </p>
-                            </Grid>
-                            <Grid item xs={4}>
-                              <p
-                                className="value"
-                              >
-                                INR {x.productCost}
-                              </p>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Item>
-                  </Grid>
-                </Grid>
-              );
-            })}
-
-            <br />
-          </div> */}
 
           <div className="product-names">
             <b>RECENT TRANSACTIONS</b>
