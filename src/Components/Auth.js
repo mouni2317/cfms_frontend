@@ -34,13 +34,13 @@ export default function Auth(props) {
     const navigate = useNavigate();
     const navigateToDashboard = () => navigate('/dashboard');
 
-    const [username, setUserName] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
     const handleSubmit = async e => {
         e.preventDefault();
         const response = await loginUser({
-            username,
+            email,
             password
         });
         if ('firstName' in response) {
@@ -49,8 +49,8 @@ export default function Auth(props) {
             sessionStorage.setItem('userId', response['userId']);
             navigateToDashboard();
         } else {
-            alert('Incorrect username or password');
-            setUserName('');
+            alert('Incorrect email or password');
+            setEmail('');
             setPassword('');
         }
     }
@@ -61,7 +61,7 @@ export default function Auth(props) {
         if (response['message'] === 'success') {
             setRegForm(regDetails);
             setConfirmPassword('');
-            setUserName('');
+            setEmail('');
             setPassword('');
             alert('User succesfully registered');
             changeAuthMode();
@@ -123,12 +123,12 @@ export default function Auth(props) {
                             </span>
                         </div>
                         <div className='form-group mt-3'>
-                            <label>User Name</label>
-                            <input type="text"
+                            <label>Email</label>
+                            <input type="email"
                             className="form-control mt-1"
-                            placeholder='Enter username'
-                            value={username}
-                            onChange={e => setUserName(e.target.value)}/>
+                            placeholder='Enter email'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}/>
                         </div>
                         <div className='form-group mt-3'>
                             <label>Password</label>
@@ -139,7 +139,7 @@ export default function Auth(props) {
                             onChange={e => setPassword(e.target.value)}/>
                         </div>
                         <div className='d-grid gap-2 mt-3'>
-                            <button type='submit' className='btn btn-primary' disabled={!username || !password}>
+                            <button type='submit' className='btn btn-primary' disabled={!email || !password}>
                                 Signin
                             </button>
                         </div>
