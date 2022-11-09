@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./Product.css"
 import axios from "axios";
+import { apiUrl } from "./constants";
 
 
 const Product = (props) => {
@@ -11,7 +12,7 @@ const Product = (props) => {
       const pathname = window.location.pathname;
       let num = pathname.slice(9)
       num = Number(num);
-      axios.post('http://localhost:8080/cfms/api/getProduct/', {
+      axios.post(apiUrl + '/getProduct/', {
         id: num,        
       })
       .then(function (response) {

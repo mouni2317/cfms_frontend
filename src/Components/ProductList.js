@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { apiUrl } from "./constants";
 
 import ProductCard from "./ProductCard"
 import "./ProductList.css"
@@ -14,7 +15,7 @@ export default function ProductList() {
 
   async function requestProducts() {
     setLoading(true);
-    const res = await fetch(`http://localhost:8080/cfms/api/getAllProducts`);
+    const res = await fetch(apiUrl + `/getAllProducts`);
     const json = await res.json();
 
     setLoading(false);

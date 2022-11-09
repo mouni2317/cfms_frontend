@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Auth.css"
+import { apiUrl } from './constants'
 
 async function loginUser(cred) {
-    return fetch('http://localhost:8080/cfms/api/login', {
+    return fetch(apiUrl + '/loginUser', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -14,7 +15,7 @@ async function loginUser(cred) {
 }
 
 async function registerUser(details) {
-    return fetch('http://localhost:8080/cfms/api/register', {
+    return fetch(apiUrl + '/register', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
